@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --bg-canvas: #FFFDF7;
+  --border-dark: #000000;
+  --border-badge: #000000;      /* badges always black, never flips */
+  --surface-white: #f0e9e9;
+  --primary-yellow: #6eb3f3;
+  --accent-pink: #FF6B8B;
+  --accent-blue: #f7e546;
+  --accent-green: #4ADE80;
+  --accent-purple: #C084FC;
+  --shadow-color: #000000;
+  --text-primary: #000000;
+
+  --border-width: 3px;
+  --shadow-offset: 4px;
+  --radius-standard: 6px;
+}
+
+/* Dark Mode Tokens — applied via data-theme="dark" on <html> */
+[data-theme="dark"] {
+  --bg-canvas: #121218;
+  --surface-white: #1E1E26;
+  --border-dark: #F5F5F0;       /* structural borders flip to light */
+  --border-badge: #000000;      /* badges keep black border in both modes */
+  --shadow-color: #F5F5F0;      /* hard shadows flip to light */
+  --text-primary: #F5F5F0;
+
+  /* Accent colors stay vibrant — neon reads great on dark */
+ --primary-yellow: rgb(88, 93, 122);
+  --accent-pink: #fc7508;
+  --accent-blue: #c92850;
+  --accent-green: #03833d;
+  --accent-purple: #188576;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  /* Smooth theme transition */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Neo-Brutalist Box Utilities */
+.nb-card {
+  background-color: var(--surface-white);
+  border: var(--border-width) solid var(--border-dark);
+  border-radius: var(--radius-standard);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
+  padding: 1.25rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nb-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px var(--shadow-color);
+}
+
+/* Neo-Brutalist Buttons */
+.nb-btn {
+  font-family: inherit;
+  font-weight: 700;
+  border: var(--border-width) solid var(--border-dark);
+  border-radius: var(--radius-standard);
+  padding: 0.6rem 1.25rem;
+  box-shadow: 3px 3px 0px var(--shadow-color);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nb-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--shadow-color);
+}
+
+.nb-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--shadow-color);
+}
+
+.nb-btn-primary { background-color: var(--primary-yellow); color: #000000; }
+.nb-btn-secondary { background-color: var(--accent-blue); color: #000000; }
+.nb-btn-danger { background-color: var(--accent-pink); color: #000000; }
+.nb-btn-success { background-color: var(--accent-green); color: #000000; }
+.nb-btn-purple { background-color: var(--accent-purple); color: #000000; }
+.nb-btn-white { background-color: var(--surface-white); color: var(--text-primary); border-color: var(--border-dark); }
+
+/* Neo-Brutalist Tab Buttons with active nav-state convention */
+.nb-tab {
+  font-family: inherit;
+  font-weight: 700;
+  border: var(--border-width) solid var(--border-dark);
+  border-radius: var(--radius-standard);
+  padding: 0.4rem 0.85rem;
+  box-shadow: 3px 3px 0px var(--shadow-color);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  background-color: var(--surface-white);
+  color: var(--text-primary);
+  text-transform: capitalize;
+  font-size: 0.85rem;
+}
+
+.nb-tab:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--shadow-color);
+  background-color: var(--bg-canvas);
+}
+
+.nb-tab-active {
+  background-color: var(--primary-yellow) !important;
+  color: #000000 !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0px var(--shadow-color) !important;
+}
+
+/* Neo-Brutalist Form Inputs */
+.nb-input, .nb-select, .nb-textarea {
+  font-family: inherit;
+  width: 100%;
+  border: var(--border-width) solid var(--border-dark);
+  border-radius: var(--radius-standard);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background-color: var(--surface-white);
+  color: var(--text-primary);
+  box-shadow: 2px 2px 0px var(--shadow-color);
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nb-input:focus, .nb-select:focus, .nb-textarea:focus {
+  background-color: var(--surface-white);
+  box-shadow: 4px 4px 0px var(--shadow-color);
+  border-color: var(--primary-yellow);
+}
+
+/* Dark mode: tinted focus state */
+[data-theme="dark"] .nb-input:focus,
+[data-theme="dark"] .nb-select:focus,
+[data-theme="dark"] .nb-textarea:focus {
+  background-color: #2A2A36;
+}
+
+/* Badges & Pills — uses --border-badge which stays black in both themes */
+.nb-badge {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 2px solid var(--border-badge);
+  border-radius: 4px;
+  box-shadow: 1px 1px 0px var(--border-badge);
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+/* Modal Overlay */
+.nb-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.nb-modal {
+  background-color: var(--bg-canvas);
+  border: var(--border-width) solid var(--border-dark);
+  border-radius: var(--radius-standard);
+  box-shadow: 8px 8px 0px var(--shadow-color);
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+/* Spinner animation for loading states */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
