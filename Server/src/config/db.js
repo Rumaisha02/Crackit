@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
  */
 export const connectDB = async () => {
   try {
-    const connStr = process.env.MONGODB_URI || 'mongodb://localhost:27017/internship-tracker';
+    const connStr = process.env.MONGODB_URI || 'mongodb+srv://rumaishaqadeer_db_user:<1JQClr00ug8IwL6Z>@crackitdatabase.srbkfxk.mongodb.net/?appName=CrackitDatabase';
     const conn = await mongoose.connect(connStr);
     console.log(`[MongoDB] Connected successfully to host: ${conn.connection.host}`);
   } catch (error) {
